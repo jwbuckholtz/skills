@@ -94,6 +94,15 @@ def check(path):
                 warnings.append(f"cell {i}: preprocessing step missing {', '.join(missing)}")
         if "<" in first and ">" in first and re.search(r"<[^>]*>", first):
             warnings.append(f"cell {i}: unfilled template placeholder in heading")
+    shared_preprocessing = any(
+        src(c).lstrip().lower().startswith("# shared preprocessing")
+        for c in cells if c.get("cell_type") == "markdown"
+    )
+    if not shared_preprocessing:
+        if not re.search(r"^#{1,4}\s+Eligibility contract\b", markdown, re.M | re.I):
+            warnings.append("no endpoint-specific eligibility contract section: define the executable rule, reasons, support and rationale")
+        if "eligibility" not in markdown or "sensitivity" not in markdown:
+            warnings.append("eligibility sensitivity not described: show how defensible rules change support and findings")
     if concept_cells == 0:
         warnings.append("no '### Concept:' cells: concepts, measures, and methods need in-depth explanation before use")
 

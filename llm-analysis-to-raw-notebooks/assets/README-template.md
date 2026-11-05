@@ -51,6 +51,14 @@ RUN_FULL_COHORT=1 python scripts/run_notebook.py ... --timeout 7200
 
 Source: <repo/path> @ <commit>. Per-analysis source paths, parameters and seeds are in each notebook's source map and in `coverage_manifest.json`.
 
+## Eligibility contracts and sensitivity
+
+| Analysis | Source eligibility rule | Endpoint-specific rationale | Units retained/lost | Alternative rules tested | Finding change |
+|---|---|---|---|---|---|
+| <id> | <source/code> | <measurement and estimator support> | <by hierarchy and reason> | <bounded alternatives> | <estimate, uncertainty, inference> |
+
+Each notebook contains the executable rule, row-level reason ledger, and figures for support and finding changes. A rule for one endpoint does not define whole-session usability.
+
 ## Reproduction boundaries
 
 - <what was reproduced exactly, within tolerance, not compared, or unresolved>

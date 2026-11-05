@@ -18,6 +18,13 @@ Use this when constructing or reviewing a lesson. Adapt headings to the analysis
 - Local input contract: `DATA_ROOT`, file patterns and object paths, acquisition metadata, spatial or sensor geometry, time bases/events where relevant, units, masks, participant/session IDs, and modality-specific linkage metadata. Assert these against a real local file.
 - Explicit dependency and resource requirements. List what must already be installed instead of installing it, and make no network calls: the student's environment and the raw data may be governed by institutional or data-use rules, and the lesson must run offline to be reproducible.
 
+## Eligibility contract for each analysis
+
+- Define eligible *for what*: endpoint, estimand, unit of analysis and inference, required conditions/splits, and minimum information needed for measurement, identifiability, fitting, and precision. Do not reuse a stricter gate from an unrelated endpoint.
+- Show the source rule and provenance, or label a newly derived rule as a teaching/design judgment. Explain why it is neither too restrictive for this target nor permissive of invalid or unsupported estimates.
+- Implement a deterministic eligibility function and a per-unit ledger with pass/fail reasons. Report counts and losses at each hierarchy level (for example trial → session → animal) and by condition/split. Preserve units excluded from one endpoint in ledgers for other endpoints.
+- Compare a small, justified set of eligibility alternatives after the source specification. Plot near-threshold support, attrition, sample composition, effect estimates, uncertainty, individual-unit consistency, and inferential results. Name the population/estimand change and retain all attempted rules.
+
 ## Measurement fit and decisions
 
 - State the target construct and the recorded quantity; trace their link through acquisition, timing, spatial/sensor geometry, calibration, preprocessing and labels. Identify the resolution, reliability, coverage, missingness and artifacts that bear on whether the target can be estimated. Show data-based diagnostics and state when the result is measurement-limited.
