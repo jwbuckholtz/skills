@@ -14,7 +14,7 @@ In an agent that discovers skills from a local skills directory, copy or link th
 
 > Use `$llm-analysis-to-raw-notebooks` on the attached folder (or `/path/to/analysis-folder`). Inventory every distinct analysis, find and verify matching local data, and make a separate teaching notebook per analysis that runs from the local starting-point data. Explain each transformation and result.
 
-You can attach a folder, point to a local folder, or use the current project workspace. An analysis list and explicit data paths are optional when the available files contain enough information to discover them. The skill reports ambiguous or missing links instead of guessing. Read the [skill instructions](llm-analysis-to-raw-notebooks/SKILL.md) for the full workflow and input requirements. The bundled templates are starting points; the author must verify source code and data semantics and execute the lessons locally before claiming reproduction.
+You can attach a folder, point to a local folder, or use the current project workspace. An analysis list and explicit data paths are optional when the available files contain enough information to discover them. The skill reports ambiguous or missing links instead of guessing. See the [skill usage guide](llm-analysis-to-raw-notebooks/README.md) for setup and prompt examples, and the [skill instructions](llm-analysis-to-raw-notebooks/SKILL.md) for the full workflow. The bundled templates are starting points; the author must verify source code and data semantics and execute the lessons locally before claiming reproduction.
 
 ## License
 

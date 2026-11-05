@@ -121,6 +121,10 @@ Every analysis output that admits a meaningful visualization gets one. Include f
 
 After producing the results, inspect the realized design and model behavior, not only whether code completed. Reconcile sample counts and exclusions; check dependence and the actual unit of inference, split leakage, class/condition support, convergence and numerical stability, calibration of null or permutation procedures, interval coverage assumptions, multiplicity families, and influential participants/sessions or outliers as relevant. Use diagnostics and limited follow-up checks to identify statistical issues exposed by the data. Report the issue, evidence, affected analyses, possible direction of bias, and whether a corrected same-estimator rerun or a changed statistical model would be required. Keep the original result and the diagnostic visible. Do not replace the source analysis or interpret a post-hoc repair as preplanned evidence without labeling it.
 
+## Notebook formats
+
+Create `.ipynb` lessons by default. When the user requests marimo-style `.py` notebooks as well, generate paired marimo companions from the same teaching source, verify that the pair stays synchronized, and test tables and figures in the marimo runtime when available. Record when only static or stub checks were possible. Keep each analysis separate in both formats.
+
 ## Verification and deliverables
 
 Use `references/lesson-contract.md` as the output and validation checklist. For each notebook:
