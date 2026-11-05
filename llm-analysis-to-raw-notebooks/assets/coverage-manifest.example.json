@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source": {
     "location": "<repo or report path, relative or anonymized>",
     "revision": "<commit or sha256>"
@@ -13,7 +13,7 @@
       "source_files": [
         "analysis/decode_p300.py"
       ],
-      "notebook": "notebooks/01_p300_family.ipynb",
+      "notebook": "notebooks/01_p300_family.py",
       "raw_inputs": [
         "sub-*/eeg/*_task-oddball_eeg.edf",
         "sub-*/eeg/*_events.tsv"
@@ -36,7 +36,11 @@
       "notes": "",
       "notebook_section": "erp-p300-decoding-v2",
       "source_output_artifact": "<recorded LLM artifact and revision>",
-      "student_comparison_status": "match"
+      "student_comparison_status": "match",
+      "source_revision": "<source revision>",
+      "input_fingerprint": "<privacy-preserving identity>",
+      "computation_config": "<parameters and seeds>",
+      "sensitivity_scenarios": []
     },
     {
       "analysis_id": "erp-p300-decoding-v2-no-ica",
@@ -48,7 +52,7 @@
       "source_files": [
         "analysis/decode_p300.py"
       ],
-      "notebook": "notebooks/01_p300_family.ipynb",
+      "notebook": "notebooks/01_p300_family.py",
       "raw_inputs": [
         "sub-*/eeg/*_task-oddball_eeg.edf"
       ],
@@ -64,7 +68,11 @@
       "notes": "Stopped by design: no proxy path built from derivatives.",
       "notebook_section": "erp-p300-decoding-v2-no-ica",
       "source_output_artifact": "<recorded LLM artifact and revision>",
-      "student_comparison_status": "unavailable_missing_input"
+      "student_comparison_status": "unavailable_missing_input",
+      "source_revision": "<source revision>",
+      "input_fingerprint": "<privacy-preserving identity>",
+      "computation_config": "<parameters and seeds>",
+      "sensitivity_scenarios": []
     }
   ],
   "status_values": [
@@ -83,7 +91,7 @@
   ],
   "notebooks": [
     {
-      "path": "notebooks/00_preprocessing.ipynb",
+      "path": "notebooks/00_preprocessing.py",
       "kind": "processing_stage",
       "title": "EEG preprocessing",
       "member_analysis_ids": [],
@@ -93,7 +101,7 @@
       ]
     },
     {
-      "path": "notebooks/01_p300_family.ipynb",
+      "path": "notebooks/01_p300_family.py",
       "kind": "analysis_family",
       "title": "Does oddball response distinguish tones?",
       "member_analysis_ids": [
@@ -107,5 +115,24 @@
         "AUC and eligibility sensitivity figures"
       ]
     }
-  ]
+  ],
+  "notebook_format": "marimo",
+  "canonical_format": "marimo",
+  "validation_by_backend": {
+    "marimo": {
+      "static": "not_run",
+      "dag": "not_run",
+      "headless": "not_run",
+      "scientific": "not_run",
+      "interactive": "not_applicable"
+    }
+  },
+  "interactivity": {
+    "offered": false,
+    "deterministic_sensitivity": true
+  },
+  "assessment": {
+    "prediction_checkpoints": [],
+    "independent_exercise": "<rubric reference>"
+  }
 }
