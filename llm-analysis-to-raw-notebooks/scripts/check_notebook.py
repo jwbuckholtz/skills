@@ -103,6 +103,8 @@ def check(path):
             warnings.append("no endpoint-specific eligibility contract section: define the executable rule, reasons, support and rationale")
         if "eligibility" not in markdown or "sensitivity" not in markdown:
             warnings.append("eligibility sensitivity not described: show how defensible rules change support and findings")
+        if not re.search(r"^#{1,4}\s+Multiplicity contract\b", markdown, re.M | re.I):
+            warnings.append("no multiplicity contract section: define the full tested family and method, or state no inference")
     if concept_cells == 0:
         warnings.append("no '### Concept:' cells: concepts, measures, and methods need in-depth explanation before use")
 

@@ -31,6 +31,13 @@ Use this when constructing or reviewing a lesson. Adapt headings to the analysis
 - Inventory consequential thresholds and user choices with source, units, rationale, plausible alternatives, and impact on eligibility or measurement. Plot the distribution around each material threshold and show support before/after. Separate fixed source settings from student-configurable settings.
 - Prespecify a small set of sensitivity comparisons that answer concrete measurement or design concerns. Run them after the source specification, label them separately, preserve every attempted setting and denominator, and identify when an alternative changes the estimand. Explain any important sensitivity that could not be run.
 
+## Multiplicity contract and sensitivity
+
+- State the inferential claim and full tested set for each endpoint, including related endpoints when one claim spans them. Name the unit of inference, test dependence, source family and method, targeted error rate, and rationale for family boundaries. Explicitly record no inference/correction where applicable.
+- Reproduce the source nominal and adjusted results before exploring alternatives. Report all tested rows, not only favorable ones; retain effect sizes, interval types, uncertainty and participant/animal consistency alongside p-values.
+- Provide an interactive or parameterized comparison of a small, predeclared set of defensible family/method scenarios on the same full test ledger. Show membership and family size, method assumptions, adjusted results and a figure of changes. Recompute valid nulls when required; do not simply relabel p-values from an incompatible procedure.
+- Explain how a scenario changes the claim or evidence interpretation without using a threshold crossing as an automatic verdict or fishing for a favorable correction. Preserve the source specification and every scenario shown.
+
 ## Teaching depth
 
 Default reader: a PhD student fluent in statistics and programming, possibly new to the modality. Every concept, measure, preprocessing step, and analysis method gets a concept cell before first use: intuition, formal definition (symbols, units), assumptions, sensitivities/failure modes, alternatives and why this one was chosen, a labeled synthetic toy example when useful, and verifiable primary references. Every preprocessing step (run here or by an external pipeline) also states the decision (exact parameters and their origin), shows the effect on real data (before/after, what was lost), and explains the counterfactual (what reasonable alternatives would change). Review test: could the student defend each choice to a skeptical committee member using only the notebook?

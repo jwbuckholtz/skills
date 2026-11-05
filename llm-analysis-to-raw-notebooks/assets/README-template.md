@@ -59,6 +59,14 @@ Source: <repo/path> @ <commit>. Per-analysis source paths, parameters and seeds 
 
 Each notebook contains the executable rule, row-level reason ledger, and figures for support and finding changes. A rule for one endpoint does not define whole-session usability.
 
+## Multiplicity contracts and sensitivity
+
+| Analysis/claim | Complete tested set | Source family and method | Defensible scenarios | Effect of scenarios |
+|---|---|---|---|---|
+| <id/claim> | <tests and dependence> | <family size, method, target error rate or no inference> | <predeclared alternatives> | <adjusted values, uncertainty and interpretation> |
+
+Notebook controls recompute named scenarios from the full test ledger. The source correction and all tested results remain visible.
+
 ## Reproduction boundaries
 
 - <what was reproduced exactly, within tolerance, not compared, or unresolved>
