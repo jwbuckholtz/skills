@@ -8,6 +8,12 @@ Use this when constructing or reviewing a lesson. Adapt headings to the analysis
 - Produce an analysis ledger covering all distinct questions/endpoints, their source paths and versions, dependency graph, relation (parent, sensitivity, extension, rerun/duplicate), and notebook assignment. Name excluded or unresolved candidates and why.
 - For each analysis, distinguish code-supported operations from prose-only claims and verify the local starting-point data link separately. Missing data block that analysis's reproduction, not the inventory of the rest of the folder.
 
+## Notebook boundary and dependency map
+
+- Define each notebook as a processing stage or a family united by one scientific question. State why analyses are grouped or split; a script count or output-table count is not a scientific boundary.
+- Map every source analysis to its notebook, stage dependencies, member section, and status. Several analysis records may point to one family notebook. Each member retains its own estimand, eligibility and multiplicity contracts, figures, results, and limitations.
+- Show what each stage reads and writes, which downstream notebooks consume it, and how the local-data path remains reproducible. Preserve user-requested finer notebook boundaries.
+
 ## Before computation
 
 - Question in original wording if available; otherwise label the documented scientific question.

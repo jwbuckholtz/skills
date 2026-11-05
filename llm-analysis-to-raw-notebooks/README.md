@@ -1,6 +1,6 @@
 # Raw-data teaching notebooks
 
-Use this skill to turn a set of neuroimaging or LFP analyses into separate, heavily explained notebooks. It inventories the analyses, links each one to verified local inputs, and teaches the operations from the source analysis's starting point through figures and inference. The skill is an instruction set for a coding agent; the scripts in this folder check and execute notebooks after the agent creates them.
+Use this skill to turn a set of neuroimaging or LFP analyses into notebooks organized by processing stage or unifying analysis question. It inventories the analyses, links each one to verified local inputs, and teaches the operations from the source analysis's starting point through figures and inference. The skill is an instruction set for a coding agent; the scripts in this folder check and execute notebooks after the agent creates them.
 
 ## Install and invoke
 
@@ -10,21 +10,25 @@ You may attach a folder, provide a local path, or work in an open project. A han
 
 The notebook output uses a configurable `DATA_ROOT` and separate `OUTPUT_ROOT`. Paths discovered on the author's machine are for validation, not hard-coded into published lessons. The original analyses and raw files remain intact.
 
+## How notebooks are grouped
+
+The default unit is a processing stage or a question-centered analysis family, not an individual script, contrast, or output table. For example, a pipeline could have `00_preprocessing.ipynb`, `01_first_level_maps.ipynb`, and `02_reward_representation.ipynb`; the last notebook may contain several related contrasts and sensitivity analyses. Every member analysis still gets its own eligibility and multiplicity contract, outputs, and interpretation. You can request finer notebook boundaries explicitly.
+
 ## Prompt examples
 
 Use the example that matches your situation. Replace paths and analysis names only where you have them.
 
 ### Uploaded folder with many analyses
 
-> Use `$llm-analysis-to-raw-notebooks` on the folder I attached. Inventory all distinct analyses, including reruns and sensitivity branches, and show how each maps to producer code, inputs, and saved outputs. Find matching local data where accessible, then make one teaching notebook per analysis and a shared preprocessing lesson where appropriate. Document unresolved links and excluded candidates.
+> Use `$llm-analysis-to-raw-notebooks` on the folder I attached. Inventory all distinct analyses, including reruns and sensitivity branches, and show how each maps to producer code, inputs, and saved outputs. Find matching local data where accessible, then make one notebook per processing stage or question-centered analysis family, with each member analysis documented inside its family notebook. Document unresolved links and excluded candidates.
 
 ### Current project, with automatic discovery
 
-> Use `$llm-analysis-to-raw-notebooks` for this project. Find the analyses and their local starting-point data from the project code and manifests, verify each match against the actual files, and build separate teaching notebooks. Explain every transformation and visualize each meaningful output.
+> Use `$llm-analysis-to-raw-notebooks` for this project. Find the analyses and their local starting-point data from the project code and manifests, verify each match against the actual files, and build stage notebooks and question-centered analysis-family notebooks. Explain every transformation and visualize each meaningful output.
 
 ### Explicit code and data locations
 
-> Use `$llm-analysis-to-raw-notebooks` on `/path/to/analysis-code` with local raw data at `/path/to/data`. Recreate analyses A, B, and C in separate notebooks. Compare computed outputs with the recorded results and report any mismatch or step that cannot be verified.
+> Use `$llm-analysis-to-raw-notebooks` on `/path/to/analysis-code` with local raw data at `/path/to/data`. Group A and B if they answer one question; keep C separate if it answers another. Compare computed outputs with the recorded results and report any mismatch or step that cannot be verified.
 
 ### Folder contains analyses, but data may be missing
 
@@ -36,7 +40,7 @@ Use the example that matches your situation. Replace paths and analysis names on
 
 ### Focused teaching scope and format
 
-> Use `$llm-analysis-to-raw-notebooks` for the F01 parent analyses only. Make a separate `.ipynb` for preprocessing and each analysis, with matching marimo `.py` companions. Assume a student knows general neuroimaging but is new to LFPs and multivariate methods. Keep the source results and any eligibility or multiplicity sensitivities visibly separate.
+> Use `$llm-analysis-to-raw-notebooks` for the F01 parent analyses only. Make a separate `.ipynb` for preprocessing and each question-centered F01 family, with matching marimo `.py` companions. Keep explicit sections for each member analysis. Assume a student knows general neuroimaging but is new to LFPs and multivariate methods. Keep the source results and any eligibility or multiplicity sensitivities visibly separate.
 
 ### Measurement, eligibility, and multiplicity choices
 
@@ -44,7 +48,7 @@ Use the example that matches your situation. Replace paths and analysis names on
 
 ## What to expect
 
-A completed lesson set should include an index with run order and provenance, one notebook per distinct analysis, shared preprocessing where useful, and a coverage ledger that distinguishes completed reproduction from a bounded test or missing inputs. Each analysis lesson teaches the biological question, measurement, source operations, inclusion rules, model, inference, sensitivity checks, and interpretation limits. It should show the effect of important steps on real data and compare local results with source outputs where possible.
+A completed lesson set should include an index with run order and provenance, a notebook per processing stage or question-centered analysis family, and a coverage ledger that distinguishes completed reproduction from a bounded test or missing inputs. Each family notebook teaches the biological question, measurement, source operations, inclusion rules, model, inference, sensitivity checks, and interpretation limits. It should show the effect of important steps on real data and compare local results with source outputs where possible.
 
 A notebook that merely loads a saved result is not a raw-data reproduction. A small real-data run checks the pipeline but does not certify the full cohort. Missing input or ambiguous event meaning should be reported, not filled in with a synthetic example.
 

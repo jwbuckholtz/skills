@@ -1,6 +1,6 @@
 ---
 name: llm-analysis-to-raw-notebooks
-description: Turn a set of LLM-generated scientific analyses into separate, heavily annotated teaching notebooks that reproduce each analysis from local raw data. Use when the user uploads or points to a folder of analyses, or provides code, reports, or a repository and asks for executable lessons, across neuroimaging and LFP workflows, including MRI, fMRI, diffusion, PET, EEG, MEG, and intracranial recordings.
+description: Turn a set of LLM-generated scientific analyses into stage- or question-family teaching notebooks that reproduce each analysis from local raw data. Use when the user uploads or points to a folder of analyses, or provides code, reports, or a repository and asks for executable lessons, across neuroimaging and LFP workflows, including MRI, fMRI, diffusion, PET, EEG, MEG, and intracranial recordings.
 ---
 
 # Analysis-to-notebook teaching skill
@@ -16,8 +16,8 @@ This is an authoring workflow for teaching materials. It works on any supplied a
 ## Bundled resources
 
 - `references/lesson-contract.md` — the checklist for what each lesson must show and how to record validation. Read it before writing the first notebook.
-- `assets/lesson-template.ipynb` — the cell skeleton every analysis lesson starts from (question, config, discovery, source map, concept cells, preprocessing and analysis steps, comparison, limits, validation record). Copy it per analysis and fill it in; delete sections that do not apply rather than leaving them empty.
-- `assets/preprocessing-template.ipynb` — the skeleton for a shared preprocessing lesson, including the pipeline-boundary declaration and per-step concept/decision/effect cells.
+- `assets/lesson-template.ipynb` — the skeleton for a question-centered analysis-family notebook. Copy it per family, retain explicit source and result sections for every member analysis, and delete irrelevant placeholders.
+- `assets/processing-stage-template.ipynb` — the skeleton for a processing-stage notebook such as first-level map creation. `assets/preprocessing-template.ipynb` specializes it for shared preprocessing and pipeline-boundary teaching.
 - `assets/README-template.md` — the index/README skeleton for the delivered lesson set.
 - `assets/coverage-manifest.example.json` — the machine-readable coverage manifest format.
 - `scripts/check_notebook.py` — static checks (stdlib only): configurable `DATA_ROOT`/`OUTPUT_ROOT`, no hard-coded absolute paths, no package installs or network fetches, every code cell explained by adjacent markdown, plotting cells that set axis labels, and concept cells that cover the required elements. It cannot judge whether an explanation is good — read the notebook as the student would. Run it on every notebook before executing.
@@ -39,9 +39,15 @@ Build a source-to-data map for each analysis: analysis ID and version, producer 
 
 Use verified local paths to run and test the generated lessons, but keep their `DATA_ROOT` configurable and do not publish machine-specific paths. The delivered README should explain how the automatically discovered source and data were linked and how another user points the notebooks at their own copy.
 
+## Choose notebook boundaries
+
+Use one notebook per meaningful processing stage (for example raw-data QC, preprocessing, first-level map creation, or group-level modeling) or per analysis family centered on one unifying scientific question. Group related endpoints, contrasts, and planned sensitivities when they share the question and a coherent data path; give each member a clearly labeled section and retain its endpoint-specific measurement, eligibility, multiplicity, result, and limitation records. A shared stage should produce explicit artifacts that later notebooks consume. A family notebook may call shared stage outputs but should explain the dependency and keep the path from local data traceable.
+
+Do not equate one script, one saved table, or one test with one notebook. Split a family when questions, starting points, estimands, or execution requirements make a combined lesson hard to understand or reproduce. Document the stage/family boundaries, dependencies, and mapping of *every* source analysis to a notebook in the coverage ledger. Honor a user's explicitly requested notebook boundaries even when they are finer than this default.
+
 ## Scope and source audit
 
-1. Inventory the supplied analysis set before writing notebooks. Map each distinct analysis to its question, producer code, raw inputs, preprocessing dependencies, saved outputs, version, and status. Distinguish parent analyses, sensitivities, extensions, and duplicate versions. Write one notebook per analysis, plus a separate shared preprocessing lesson when several analyses share an upstream path (so students do not relearn — or see inconsistent versions of — the same steps). Present a related analysis as related: calling a sensitivity analysis an independent replication overstates the evidence.
+1. Inventory the supplied analysis set before writing notebooks. Map each distinct analysis to its question, producer code, raw inputs, preprocessing dependencies, saved outputs, version, and status. Distinguish parent analyses, sensitivities, extensions, and duplicate versions. Assign each analysis to a processing-stage or question-family notebook under the boundary rules above; create shared stage lessons for upstream operations used by several families. Present a related analysis as related: calling a sensitivity analysis an independent replication overstates the evidence.
 2. Trace each computational path back to local raw files and the metadata needed to interpret them. Inspect the actual objects and source code. Establish the modality-appropriate acquisition metadata, physical units, coordinate or time bases, spatial or sensor layout, events/labels, masks, and participant/session identifiers. Document missing or ambiguous mappings. Derive event semantics, anatomical meaning, and data quality from metadata and inspection of the data itself: filenames and array shapes are routinely wrong or ambiguous (a `trial_type` column coded 1/2, an array whose axes could be channels × time or time × channels), and a wrong guess silently changes the result.
 3. Define the lesson's starting point. By default it is the raw acquisition data. The one exception: when the source analysis itself starts from the outputs of an established external preprocessing pipeline (fMRIPrep, QSIPrep, FreeSurfer, MNE-BIDS-Pipeline, Kilosort, and similar), the lesson starts from those pipeline outputs, because that is where the source's own computation begins and rerunning the pipeline would reproduce a different program, not the analysis. In that case:
    - Read the pipeline's version, configuration, logs, and reports (HTML reports, `dataset_description.json`, boilerplate/citation text, confound files) and teach each step the pipeline ran, in the same depth as steps the lesson runs itself, with the pipeline's own QC figures or plots of its outputs.
@@ -123,7 +129,7 @@ After producing the results, inspect the realized design and model behavior, not
 
 ## Notebook formats
 
-Create `.ipynb` lessons by default. When the user requests marimo-style `.py` notebooks as well, generate paired marimo companions from the same teaching source, verify that the pair stays synchronized, and test tables and figures in the marimo runtime when available. Record when only static or stub checks were possible. Keep each analysis separate in both formats.
+Create `.ipynb` lessons by default. When the user requests marimo-style `.py` notebooks as well, generate paired marimo companions from the same teaching source, verify that the pair stays synchronized, and test tables and figures in the marimo runtime when available. Record when only static or stub checks were possible. Keep the same stage/family boundaries and per-analysis sections in both formats.
 
 ## Verification and deliverables
 

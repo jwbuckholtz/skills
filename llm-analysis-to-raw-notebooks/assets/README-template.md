@@ -1,6 +1,6 @@
 # <Lesson set title>
 
-Teaching notebooks that reproduce <N> analyses from <source repository/report> starting from local raw data.
+Teaching notebooks organized by processing stage or unifying question that reproduce <N> analyses from <source repository/report> starting from local raw data.
 
 ## Analysis folder intake
 
@@ -11,16 +11,19 @@ Teaching notebooks that reproduce <N> analyses from <source repository/report> s
 
 ## Run order
 
-| # | Notebook | Analysis ID | Depends on | Reproduction level reached |
-|---|---|---|---|---|
-| 0 | `00_shared_preprocessing.ipynb` | — | — | <mechanics / plumbing / full> |
-| 1 | `01_<analysis>.ipynb` | <id> | 0 | |
+| # | Notebook | Stage or unifying question | Member analysis IDs | Depends on | Reproduction level reached |
+|---|---|---|---|---|---|
+| 0 | `00_preprocessing.ipynb` | Preprocessing | — | — | <mechanics / plumbing / full> |
+| 1 | `01_first_level_maps.ipynb` | First-level map creation | <ids> | 0 | <status> |
+| 2 | `02_<question_family>.ipynb` | <unifying question> | <ids> | 1 | <status> |
+
+Map every source analysis to a member section in its stage or family notebook; justify any split or grouping that is not obvious.
 
 ## Starting point
 
 | Notebook | Starts from | Upstream steps |
 |---|---|---|
-| `01_<analysis>.ipynb` | <raw acquisition data \| <pipeline> <version> outputs> | <executed here \| explained from pipeline logs/reports, not re-executed> |
+| `02_<question_family>.ipynb` | <raw acquisition data \| <pipeline> <version> outputs> | <executed here \| explained from pipeline logs/reports, not re-executed> |
 
 ## Local data setup
 
@@ -37,7 +40,7 @@ Must already be installed (the notebooks do not install anything): <python versi
 
 ```bash
 python scripts/check_notebook.py notebooks/*.ipynb
-python scripts/run_notebook.py notebooks/01_<analysis>.ipynb --data-root "$DATA_ROOT" --output-root "$OUTPUT_ROOT"
+python scripts/run_notebook.py notebooks/02_<question_family>.ipynb --data-root "$DATA_ROOT" --output-root "$OUTPUT_ROOT"
 # full cohort (deliberate):
 RUN_FULL_COHORT=1 python scripts/run_notebook.py ... --timeout 7200
 ```
