@@ -9,6 +9,13 @@ Teaching notebooks organized by processing stage or unifying question that repro
 - Analysis ledger: <link to coverage manifest; name excluded, duplicate, and unresolved candidates>
 - Source-to-data linking: <evidence used to match each analysis to its local inputs; name ambiguities>
 
+## Output format, assessment and validation
+
+- Primary backend: <marimo|jupyter|both>; canonical source if paired: <path>
+- Optional interactivity offered: <controls or none>; deterministic noninteractive path: <details>
+- Student assessment: <prediction checkpoints, answer criteria and independent exercise>
+- Validation for each backend: <syntax/DAG/headless/scientific/UI statuses>
+
 ## Run order
 
 | # | Notebook | Stage or unifying question | Member analysis IDs | Depends on | Reproduction level reached |
@@ -68,7 +75,7 @@ Each notebook contains the executable rule, row-level reason ledger, and figures
 |---|---|---|---|---|
 | <id/claim> | <tests and dependence> | <family size, method, target error rate or no inference> | <predeclared alternatives> | <adjusted values, uncertainty and interpretation> |
 
-Notebook controls recompute named scenarios from the full test ledger. The source correction and all tested results remain visible.
+Optional notebook controls recompute named scenarios from the full fixed test ledger; deterministic code always evaluates every prespecified scenario. The source correction and all tested results remain visible.
 
 ## Student-run outputs and source comparison
 
@@ -82,3 +89,13 @@ Each notebook includes hands-on checkpoints at several data stages, worked answe
 
 - <what was reproduced exactly, within tolerance, not compared, or unresolved>
 - Synthetic fixtures (if any) validate mechanics only; bounded real-data runs validate plumbing only.
+
+## Marimo commands (if selected)
+
+```bash
+python scripts/check_marimo.py notebooks/*.py
+python scripts/run_marimo.py notebooks/02_question.py --data-root "$DATA_ROOT" --output-root "$OUTPUT_ROOT"
+marimo edit notebooks/02_question.py
+```
+
+Headless static HTML export does not test reactive controls. Validate optional interactions separately, and never claim full-cohort reproduction from a bounded run.

@@ -85,3 +85,12 @@ These are prompts for relevant checks, not a requirement to add irrelevant modal
 ## Validation record
 
 `scripts/run_notebook.py` writes the mechanical part of this record (environment, cells executed, errors, figures rendered, runtime) to JSON; add the scientific part by hand in the notebook's final cell. Record tested environment, local input identity without disclosing sensitive paths in the published notebook, participants/animals, sessions, and analysis units processed, cells executed, figures rendered, output checks, mismatches, and unexecuted steps. A synthetic fixture validates mechanics only. A small real-data run validates local plumbing only. Full reproduction requires the declared raw cohort and the original analysis design.
+
+## Formats, assessment, and independent validation
+
+- State marimo, Jupyter or both; identify canonical source and independently tested status for each format.
+- For marimo, use native cells and valid reactive dependencies; separately validate Python syntax, marimo DAG, headless execution, source comparison and optional interactions. Avoid unintended expensive automatic refits.
+- **Interactivity is optional.** All original reproduction and small predeclared sensitivity scenarios execute without controls; if controls are offered, they preserve the original source result and show all scenarios, not only selected favorable ones.
+- Provide predict → execute/inspect → explain checkpoints, delayed worked answers or rubrics, and an independent reproduction-and-interpretation assessment.
+- Record source revision, input fingerprint, cohort, config/seeds, source output, recomputed output, declared tolerances, differences, scope, and each sensitivity scenario in machine-readable form.
+- Test paired backends against matched inputs; do not claim agreement solely from conversion, an export or successful code execution.
