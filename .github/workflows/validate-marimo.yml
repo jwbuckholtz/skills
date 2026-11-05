@@ -44,7 +44,7 @@ jobs:
           data = root / 'data'
           out = root / 'out'
           data.mkdir()
-          (data / 'trials.csv').write_text('reward,effort,accept\\n1,1,1\\n2,1,1\\n1,3,0\\n2,3,0\\n')
+          (data / 'trials.csv').write_text('reward,effort,accept\n1,1,1\n2,1,1\\n1,3,0\n2,3,0\n')
           notebook = root / 'fixture.py'
           notebook.write_text('\n'.join(["import marimo","app = marimo.App()","@app.cell","def _():","    from pathlib import Path","    import os","    import csv","    import marimo as mo","    return Path, os, csv, mo","@app.cell","def _(Path, os):","    DATA_ROOT = Path(os.environ['DATA_ROOT'])","    OUTPUT_ROOT = Path(os.environ['OUTPUT_ROOT'])","    return DATA_ROOT, OUTPUT_ROOT","@app.cell","def _(DATA_ROOT, OUTPUT_ROOT, csv, mo):","    with (DATA_ROOT / 'trials.csv').open() as file:","        rows = list(csv.DictReader(file))","    observed = sum(int(r['accept']) for r in rows) / len(rows)","    source = 0.5","    tolerance = 1e-12","    assert abs(observed - source) <= tolerance","    OUTPUT_ROOT.mkdir(exist_ok=True, parents=True)","    (OUTPUT_ROOT / 'comparison.json').write_text(","        __import__('json').dumps({'source': source, 'computed': observed, 'match': True}))","    mo.md(f'Synthetic fixture comparison passed: {observed}')","    return","if __name__ == '__main__':","    app.run()"]) + '\n')
           p = subprocess.run([sys.executable, 'llm-analysis-to-raw-notebooks/scripts/run_marimo.py', str(notebook),
