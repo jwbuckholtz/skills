@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": {
+    "location": "<repo or report path, relative or anonymized>",
+    "revision": "<commit or sha256>"
+  },
+  "analyses": [
+    {
+      "analysis_id": "erp-p300-decoding-v2",
+      "question": "Does single-trial EEG distinguish oddball from standard tones?",
+      "relation": "parent",
+      "related_to": [],
+      "source_files": ["analysis/decode_p300.py"],
+      "notebook": "notebooks/01_erp_p300_decoding.ipynb",
+      "raw_inputs": ["sub-*/eeg/*_task-oddball_eeg.edf", "sub-*/eeg/*_events.tsv"],
+      "status": "full_reproduction",
+      "units_processed": {"participants": 24, "of_total": 24},
+      "comparisons": [
+        {"output": "group mean AUC", "source": 0.71, "lesson": 0.709, "tolerance": 0.005, "match": true}
+      ],
+      "unresolved": [],
+      "notes": ""
+    },
+    {
+      "analysis_id": "erp-p300-decoding-v2-no-ica",
+      "question": "Sensitivity of the AUC to skipping ICA artifact removal",
+      "relation": "sensitivity",
+      "related_to": ["erp-p300-decoding-v2"],
+      "source_files": ["analysis/decode_p300.py"],
+      "notebook": "notebooks/02_sensitivity_no_ica.ipynb",
+      "raw_inputs": ["sub-*/eeg/*_task-oddball_eeg.edf"],
+      "status": "stopped_missing_raw",
+      "units_processed": {"participants": 0, "of_total": 24},
+      "comparisons": [],
+      "unresolved": ["sub-*/eeg/*_channels.tsv not present locally; reference electrode unknown"],
+      "notes": "Stopped by design: no proxy path built from derivatives."
+    }
+  ],
+  "status_values": [
+    "full_reproduction",
+    "bounded_real_data_run",
+    "mechanics_only",
+    "stopped_missing_raw",
+    "not_attempted"
+  ],
+  "relation_values": ["parent", "sensitivity", "extension", "duplicate"]
+}
