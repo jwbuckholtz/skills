@@ -23,6 +23,14 @@ This is an authoring workflow for teaching materials. It works on any supplied a
 - `scripts/check_notebook.py` — static checks (stdlib only): configurable `DATA_ROOT`/`OUTPUT_ROOT`, no hard-coded absolute paths, no package installs or network fetches, every code cell explained by adjacent markdown, plotting cells that set axis labels, and concept cells that cover the required elements. It cannot judge whether an explanation is good — read the notebook as the student would. Run it on every notebook before executing.
 - `scripts/run_notebook.py` — executes a notebook headlessly with `DATA_ROOT`/`OUTPUT_ROOT` set and writes a JSON validation record (environment, cells executed, errors, figures rendered, runtime). Requires `nbformat` and `nbclient` already present; it reports what is missing rather than installing anything.
 
+## Discover and link local materials
+
+A prompt may provide only a project name or point to the current workspace. Before asking the user for paths, search the accessible project checkout, its documented sibling data locations, manifests, environment/config files, analysis registers, and producer code for candidate source analyses and local starting-point data. Follow paths recorded by the source rather than scanning unrelated private directories. Use read-only discovery and do not fetch, install, or execute the full analysis during this stage.
+
+Build a source-to-data map for each analysis: analysis ID and version, producer entry point, expected file/object patterns, candidate local path, metadata and schema checks, and confidence or unresolved ambiguity. Verify candidate data against actual contents, units, IDs, event/label semantics, cohort counts, and the source call path. A matching basename is insufficient. If several candidates or versions remain plausible, show the evidence and ask only for the decision that cannot be inferred. If no valid local starting point exists, report the missing input instead of substituting a cache or synthetic fixture.
+
+Use verified local paths to run and test the generated lessons, but keep their `DATA_ROOT` configurable and do not publish machine-specific paths. The delivered README should explain how the automatically discovered source and data were linked and how another user points the notebooks at their own copy.
+
 ## Scope and source audit
 
 1. Inventory the supplied analysis set before writing notebooks. Map each distinct analysis to its question, producer code, raw inputs, preprocessing dependencies, saved outputs, version, and status. Distinguish parent analyses, sensitivities, extensions, and duplicate versions. Write one notebook per analysis, plus a separate shared preprocessing lesson when several analyses share an upstream path (so students do not relearn — or see inconsistent versions of — the same steps). Present a related analysis as related: calling a sensitivity analysis an independent replication overstates the evidence.

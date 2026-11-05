@@ -7,6 +7,7 @@ Use this when constructing or reviewing a lesson. Adapt headings to the analysis
 - Question in original wording if available; otherwise label the documented scientific question.
 - Estimand, unit of observation, unit of inference, and what positive, negative, and measurement-limited outcomes would mean.
 - Source map: analysis ID/version, producer functions, input files, parameters, expected artifacts, execution evidence, known limitations.
+- Discovery record: where candidate local source and data paths were found, the content/schema/metadata checks that linked them, alternative candidates rejected, and unresolved ambiguity. Keep private absolute paths out of published notebooks.
 - Starting point: raw acquisition data, or an external pipeline's outputs (name, version, config, logs/reports) when the source analysis starts there. State the boundary in the notebook header.
 - Local input contract: `DATA_ROOT`, file patterns and object paths, acquisition metadata, spatial or sensor geometry, time bases/events where relevant, units, masks, participant/session IDs, and modality-specific linkage metadata. Assert these against a real local file.
 - Explicit dependency and resource requirements. List what must already be installed instead of installing it, and make no network calls: the student's environment and the raw data may be governed by institutional or data-use rules, and the lesson must run offline to be reproducible.

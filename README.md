@@ -12,9 +12,9 @@ The skill includes notebook templates, a lesson checklist, and scripts for stati
 
 In an agent that discovers skills from a local skills directory, copy or link the complete `llm-analysis-to-raw-notebooks` folder into that directory. For Codex, the default location is `~/.codex/skills/`. Then ask:
 
-> Use `$llm-analysis-to-raw-notebooks` to turn the analyses in `/path/to/analysis/repository` into teaching notebooks. My local data are under `/path/to/data`. Make a separate notebook per analysis and explain each transformation and result.
+> Use `$llm-analysis-to-raw-notebooks` for this project. Find the source analyses and matching local data, verify how they link, then make a separate teaching notebook per analysis that runs from the local starting-point data. Explain each transformation and result.
 
-Read the [skill instructions](llm-analysis-to-raw-notebooks/SKILL.md) for the full workflow and input requirements. The bundled templates are starting points; the author must verify source code and data semantics and execute the lessons locally before claiming reproduction.
+You may supply explicit repository and data paths to narrow discovery, but they are not required when the project workspace and local data are accessible. The skill reports ambiguous or missing links instead of guessing. Read the [skill instructions](llm-analysis-to-raw-notebooks/SKILL.md) for the full workflow and input requirements. The bundled templates are starting points; the author must verify source code and data semantics and execute the lessons locally before claiming reproduction.
 
 ## License
 

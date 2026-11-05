@@ -1,4 +1,4 @@
 interface:
   display_name: "Raw-Data Teaching Notebooks"
   short_description: "Teach analyses through local raw-data notebooks"
-  default_prompt: "Use $llm-analysis-to-raw-notebooks to turn these analyses into separate teaching notebooks that run from local raw data."
+  default_prompt: "Use $llm-analysis-to-raw-notebooks to find the analyses and matching local data for this project, verify the links, and build separate raw-data teaching notebooks."
