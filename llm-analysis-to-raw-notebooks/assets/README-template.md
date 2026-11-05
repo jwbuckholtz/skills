@@ -2,6 +2,13 @@
 
 Teaching notebooks that reproduce <N> analyses from <source repository/report> starting from local raw data.
 
+## Analysis folder intake
+
+- Supplied folder or archive: <anonymized location and content fingerprint>
+- Inventory: <scripts, notebooks, specifications, manifests, reports, outputs and data references>
+- Analysis ledger: <link to coverage manifest; name excluded, duplicate, and unresolved candidates>
+- Source-to-data linking: <evidence used to match each analysis to its local inputs; name ambiguities>
+
 ## Run order
 
 | # | Notebook | Analysis ID | Depends on | Reproduction level reached |
