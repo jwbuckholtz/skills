@@ -34,7 +34,9 @@
       ],
       "unresolved": [],
       "notes": "",
-      "notebook_section": "erp-p300-decoding-v2"
+      "notebook_section": "erp-p300-decoding-v2",
+      "source_output_artifact": "<recorded LLM artifact and revision>",
+      "student_comparison_status": "match"
     },
     {
       "analysis_id": "erp-p300-decoding-v2-no-ica",
@@ -60,7 +62,9 @@
         "sub-*/eeg/*_channels.tsv not present locally; reference electrode unknown"
       ],
       "notes": "Stopped by design: no proxy path built from derivatives.",
-      "notebook_section": "erp-p300-decoding-v2-no-ica"
+      "notebook_section": "erp-p300-decoding-v2-no-ica",
+      "source_output_artifact": "<recorded LLM artifact and revision>",
+      "student_comparison_status": "unavailable_missing_input"
     }
   ],
   "status_values": [
@@ -68,6 +72,7 @@
     "bounded_real_data_run",
     "mechanics_only",
     "stopped_missing_raw",
+    "stopped_missing_source_result",
     "not_attempted"
   ],
   "relation_values": [

@@ -44,6 +44,13 @@ Use this when constructing or reviewing a lesson. Adapt headings to the analysis
 - Provide an interactive or parameterized comparison of a small, predeclared set of defensible family/method scenarios on the same full test ledger. Show membership and family size, method assumptions, adjusted results and a figure of changes. Recompute valid nulls when required; do not simply relabel p-values from an incompatible procedure.
 - Explain how a scenario changes the claim or evidence interpretation without using a threshold crossing as an automatic verdict or fishing for a favorable correction. Preserve the source specification and every scenario shown.
 
+## Student-operated reproduction and source comparison
+
+- Every notebook has a runnable path from the verified local starting point to its assigned source-stage output or all member analyses, with a visible bounded/full-run choice and no opaque pasted results. Stage outputs and family members are compared separately.
+- Place multiple hands-on checkpoints where the student inspects real intermediate arrays/tables and figures, predicts or diagnoses a concrete property, runs a check, and explains the finding. Include answer criteria or worked explanations after the student task.
+- For each assigned source output, show source version/artifact and cohort, student-computed output and cohort, difference or paired figure, tolerance/comparison criterion, and status. Investigate mismatches and keep failed/unfavorable rows visible. Missing reference outputs or unrun full cohorts are explicit incomplete statuses, not successes.
+- Finish with concept and method questions that require the student to justify measurement, estimator, validation and interpretation choices using their own computed evidence.
+
 ## Teaching depth
 
 Default reader: a PhD student fluent in statistics and programming, possibly new to the modality. Every concept, measure, preprocessing step, and analysis method gets a concept cell before first use: intuition, formal definition (symbols, units), assumptions, sensitivities/failure modes, alternatives and why this one was chosen, a labeled synthetic toy example when useful, and verifiable primary references. Every preprocessing step (run here or by an external pipeline) also states the decision (exact parameters and their origin), shows the effect on real data (before/after, what was lost), and explains the counterfactual (what reasonable alternatives would change). Review test: could the student defend each choice to a skeptical committee member using only the notebook?
@@ -66,7 +73,7 @@ These are prompts for relevant checks, not a requirement to add irrelevant modal
 - Reproduce the source design and estimator before any optional teaching variation.
 - Plot all meaningful output families, including failures, exclusions, individual participants or animals, effect sizes/uncertainty, nominal and adjusted p-values with named family and method where present. State explicitly when inference or correction was not performed.
 - Keep confidence/bootstrap intervals distinct from Bayesian intervals; they answer different questions and students conflate them. Interpret estimates with measurement/design validity and alternatives. Treat a significance threshold as a decision rule, not a biological verdict — p = 0.049 and p = 0.051 are the same evidence about the brain.
-- Compare observed local outputs to source outputs. Separate exact arithmetic checks, numerical tolerance checks, cohort support differences, and results that could not be compared.
+- Compare every assigned local stage or analysis output to the recorded LLM result. Separate exact arithmetic checks, numerical tolerance checks, figure criteria, cohort support differences, and results that could not be compared; mark the last group incomplete.
 - End with interpretation limits and questions for the student that require reading both code and figures.
 
 ## Post-run statistical review

@@ -4,7 +4,7 @@ Reusable skills for scientific teaching workflows.
 
 ## Available skill
 
-- [`llm-analysis-to-raw-notebooks`](llm-analysis-to-raw-notebooks/SKILL.md) turns a set of LLM-generated neuroimaging or LFP analyses into extensively annotated notebooks organized by processing stage or unifying analysis question. Lessons run from a configurable local data root (or documented external-pipeline outputs when that is the source analysis's starting point), show the effect of each transformation, examine measurement validity and consequential thresholds, and report bounded sensitivity and post-run statistical diagnostics.
+- [`llm-analysis-to-raw-notebooks`](llm-analysis-to-raw-notebooks/SKILL.md) turns a set of LLM-generated neuroimaging or LFP analyses into extensively annotated notebooks organized by processing stage or unifying analysis question. Lessons run from a configurable local data root (or documented external-pipeline outputs when that is the source analysis's starting point), let students inspect data at multiple stages, reproduce every assigned source analysis, compare their own outputs with the LLM results, examine measurement validity and consequential thresholds, and report bounded sensitivity and post-run statistical diagnostics.
 
 The skill includes notebook templates, a lesson checklist, and scripts for static checks and headless execution. It does **not** include research data or finished analyses.
 

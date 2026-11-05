@@ -14,6 +14,8 @@ The notebook output uses a configurable `DATA_ROOT` and separate `OUTPUT_ROOT`. 
 
 The default unit is a processing stage or a question-centered analysis family, not an individual script, contrast, or output table. For example, a pipeline could have `00_preprocessing.ipynb`, `01_first_level_maps.ipynb`, and `02_reward_representation.ipynb`; the last notebook may contain several related contrasts and sensitivity analyses. Every member analysis still gets its own eligibility and multiplicity contract, outputs, and interpretation. You can request finer notebook boundaries explicitly.
 
+Every example below inherits the minimum deliverable: the student runs the assigned source stage or every member analysis on local inputs, inspects data at multiple stages, and compares their results with the recorded LLM output using named criteria. If a reference output is absent, the lesson reports that comparison as incomplete.
+
 ## Prompt examples
 
 Use the example that matches your situation. Replace paths and analysis names only where you have them.
@@ -48,7 +50,7 @@ Use the example that matches your situation. Replace paths and analysis names on
 
 ## What to expect
 
-A completed lesson set should include an index with run order and provenance, a notebook per processing stage or question-centered analysis family, and a coverage ledger that distinguishes completed reproduction from a bounded test or missing inputs. Each family notebook teaches the biological question, measurement, source operations, inclusion rules, model, inference, sensitivity checks, and interpretation limits. It should show the effect of important steps on real data and compare local results with source outputs where possible.
+A completed lesson set should include an index with run order and provenance, a notebook per processing stage or question-centered analysis family, and a coverage ledger that distinguishes completed reproduction from a bounded test or missing inputs. Every notebook lets the student run its assigned source stage or all member analyses themselves and compare their output with the recorded LLM result. Each family notebook teaches the biological question, measurement, source operations, inclusion rules, model, inference, sensitivity checks, and interpretation limits. It should give the student hands-on checkpoints at multiple data stages, worked explanations, and a source-versus-student comparison for every assigned output. Missing source results remain an explicit incomplete deliverable.
 
 A notebook that merely loads a saved result is not a raw-data reproduction. A small real-data run checks the pipeline but does not certify the full cohort. Missing input or ambiguous event meaning should be reported, not filled in with a synthetic example.
 

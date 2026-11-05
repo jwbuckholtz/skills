@@ -105,6 +105,10 @@ def check(path):
             warnings.append("eligibility sensitivity not described: show how defensible rules change support and findings")
         if not re.search(r"^#{1,4}\s+Multiplicity contract\b", markdown, re.M | re.I):
             warnings.append("no multiplicity contract section: define the full tested family and method, or state no inference")
+    if not re.search(r"^#{1,4}\s+Student checkpoint\b", markdown, re.M | re.I):
+        warnings.append("no student checkpoint section: add hands-on inspection and checkable interpretation at multiple stages")
+    if not re.search(r"^#{1,4}\s+.*(?:source.*comparison|comparison.*source)", markdown, re.M | re.I):
+        warnings.append("no source comparison section: compare student-computed stage or analysis outputs with recorded LLM results")
     if concept_cells == 0:
         warnings.append("no '### Concept:' cells: concepts, measures, and methods need in-depth explanation before use")
 

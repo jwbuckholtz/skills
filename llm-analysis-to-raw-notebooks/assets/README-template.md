@@ -70,6 +70,14 @@ Each notebook contains the executable rule, row-level reason ledger, and figures
 
 Notebook controls recompute named scenarios from the full test ledger. The source correction and all tested results remain visible.
 
+## Student-run outputs and source comparison
+
+| Notebook | Source stage or member analysis | Source artifact/version and cohort | Student result and cohort | Difference/criterion | Status |
+|---|---|---|---|---|---|
+| <notebook> | <stage or analysis ID> | <recorded LLM output> | <local output> | <tolerance or paired figure criterion> | <match/mismatch/unavailable> |
+
+Each notebook includes hands-on checkpoints at several data stages, worked answer criteria, and a comparison for every assigned source output. An unavailable reference or a bounded-only run is explicitly incomplete for full reproduction.
+
 ## Reproduction boundaries
 
 - <what was reproduced exactly, within tolerance, not compared, or unresolved>
