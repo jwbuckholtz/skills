@@ -54,6 +54,20 @@ A completed lesson set should include an index with run order and provenance, a 
 
 A notebook that merely loads a saved result is not a raw-data reproduction. A small real-data run checks the pipeline but does not certify the full cohort. Missing input or ambiguous event meaning should be reported, not filled in with a synthetic example.
 
+## Formats and learning controls
+
+Default output is **native marimo** (`.py`); request Jupyter (`.ipynb`) or both, or set `NOTEBOOK_FORMAT=marimo|jupyter|both`. Both formats are audited and executed separately against the same source analysis and input cohort.
+
+Interactive controls are offered when helpful, never required: every lesson retains deterministic source reproduction, source comparison and predefined sensitivity scenarios without widgets. Predict–inspect–explain checkpoints and an independent exercise with answer criteria test student understanding.
+
+```bash
+python scripts/check_marimo.py notebooks/02_question.py
+python scripts/run_marimo.py notebooks/02_question.py --data-root "$DATA_ROOT" --output-root "$OUTPUT_ROOT"
+marimo edit notebooks/02_question.py  # optional manual UI review
+```
+
+The marimo runtime test exports static HTML and a validation JSON; it cannot certify interactive widget behavior or scientific validity by itself. Install required dependencies separately in advance; lessons do not download data or packages.
+
 ## Running the generated notebooks
 
 Follow the generated lesson set's own README for its exact packages, data layout, run order, and resource needs. Set `DATA_ROOT` to your local input copy and `OUTPUT_ROOT` to a separate writable directory. The bundled `scripts/check_notebook.py` performs static checks; `scripts/run_notebook.py` can execute a generated `.ipynb` and save an executed copy plus a validation record when `nbformat`, `nbclient`, and a Jupyter kernel are already available. Neither script installs packages or downloads data. Full-cohort work is a deliberate action, not a side effect of opening a notebook.
