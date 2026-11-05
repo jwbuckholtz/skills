@@ -1,0 +1,49 @@
+name: Validate marimo teaching backend
+on:
+  push:
+    branches: [feature/marimo-teaching-backend]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  marimo-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install runtime dependencies
+        run: python -m pip install "marimo>=0.15" numpy
+      - name: Python syntax compilation
+        run: python -m compileall -q llm-analysis-to-raw-notebooks/scripts llm-analysis-to-raw-notebooks/assets
+      - name: Validate native marimo templates
+        run: |
+          python llm-analysis-to-raw-notebooks/scripts/check_marimo.py llm-analysis-to-raw-notebooks/assets/marimo-lesson-template.py llm-analysis-to-raw-notebooks/assets/marimo-processing-stage-template.py --json
+          python -m marimo check llm-analysis-to-raw-notebooks/assets/marimo-lesson-template.py
+          python -m marimo check llm-analysis-to-raw-notebooks/assets/marimo-processing-stage-template.py
+      - name: Run templates headlessly
+        run: |
+          mkdir -p /tmp/lesson-test-data /tmp/lesson-test-output
+          python llm-analysis-to-raw-notebooks/scripts/run_marimo.py llm-analysis-to-raw-notebooks/assets/marimo-lesson-template.py --data-root /tmp/lesson-test-data --output-root /tmp/lesson-test-output
+          python llm-analysis-to-raw-notebooks/scripts/run_marimo.py llm-analysis-to-raw-notebooks/assets/marimo-processing-stage-template.py --data-root /tmp/lesson-test-data --output-root /tmp/lesson-test-output
+          python - <<'PY'
+          import json, pathlib
+          for report in pathlib.Path('/tmp/lesson-test-output/executed').glob('*.validation.json'):
+              r = json.loads(report.read_text())
+              assert r['headless_succeeded'] and not r['interactive_controls_tested']
+              assert not r['scientific_comparison_verified']
+              print(report.name, 'OK')
+          PY
+      - name: Test failure paths
+        run: |
+          python - <<'PY'
+          import subprocess, sys, tempfile, pathlib
+          root=pathlib.Path(tempfile.mkdtemp())
+          file=root/'invalid.py'
+          file.write_text('import marimo\napp = marimo.App()\n@app.cell\ndef _():\n    x = 1\n    x = 2\n')
+          p=subprocess.run([sys.executable,'llm-analysis-to-raw-notebooks/scripts/check_marimo.py',str(file)],capture_output=True,text=True)
+          print('static check rc',p.returncode,p.stdout,p.stderr)
+          assert p.returncode != 0
+          PY
