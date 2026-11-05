@@ -42,6 +42,9 @@ def _(Path, os):
 @app.cell
 def _(mo):
     mo.md("""
+### Deterministic sensitivity
+Evaluate predefined defensible alternatives without interactive controls; preserve the original result and all attempts.
+
 ### Source comparison
 Run the actual stage from the declared starting point. Compare the computed
 artifact with the source artifact using recorded version, cohort and tolerances.
